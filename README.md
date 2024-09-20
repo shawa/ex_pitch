@@ -1,4 +1,8 @@
+
 # ExPitch
+
+
+<img width="88" alt="logo4" src="https://github.com/user-attachments/assets/d3555e7d-9719-4595-b2c3-322b5c7e5aeb" align=right>
 
 This is an exploration in writing Elixir code to play some MIDI.
 
