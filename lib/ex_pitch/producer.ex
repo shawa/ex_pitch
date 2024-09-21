@@ -37,7 +37,7 @@ defmodule ExPitch.Producer do
     {:noreply, out_conn}
   end
 
-  @spec play(Note.t() | [Note.t()]) :: :ok
+  @spec play(nil | Note.t() | [Note.t()]) :: :ok
   def play(note_or_notes, duration \\ 1000)
 
   def play(notes, duration) when is_list(notes) do
@@ -46,6 +46,13 @@ defmodule ExPitch.Producer do
 
   def play(note, duration) when is_atom(note) or is_integer(note) do
     GenServer.cast(__MODULE__, {:play_one, note, duration})
+  end
+
+  @spec hit(nil | Note.t() | [Note.t()]) :: :ok
+  def hit(nil), do: nil
+
+  def hit(drums) when is_list(drums) do
+    GenServer.cast(__MODULE__, {:play, drums, 20})
   end
 
   def hit(drum) do

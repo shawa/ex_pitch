@@ -1,7 +1,9 @@
 defmodule ExPitch.Loop do
   use GenServer
-
   use ExPitch
+
+  require Logger
+  require ExPitch.Sequence
 
   alias ExPitch.PubSub
 
@@ -19,26 +21,12 @@ defmodule ExPitch.Loop do
   end
 
   def handle_info(seq, state) do
-    case hit(seq) do
-      nil ->
-        nil
-
-      drum ->
-        drum
-        |> drum()
-        |> play()
+    case sequence(seq) do
+      [] -> nil
+      notes -> hit(notes)
     end
 
     {:noreply, state}
-  end
-
-  def hit(seq) do
-    cond do
-      rem(seq, 48) == 0 -> :clap
-      rem(seq, 24) == 0 -> :kick
-      rem(seq, 6) == 0 -> :hat_closed
-      true -> nil
-    end
   end
 
   def chords do
@@ -48,5 +36,10 @@ defmodule ExPitch.Loop do
       chord(:Fs),
       chord(:B, :minor)
     ]
+  end
+
+  ExPitch.Sequence.defsequence foo() do
+    1 -> :kick
+    3 / 4 -> :hat_closed
   end
 end

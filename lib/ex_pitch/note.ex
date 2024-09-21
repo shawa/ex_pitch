@@ -91,6 +91,7 @@ defmodule ExPitch.Note do
   for {name, index} <- Enum.with_index(drums_808) do
     # MIDI Drums usually start on C1
     @spec drum(atom()) :: 36..51
+    def note(unquote(name)), do: unquote(index + 36)
     def drum(unquote(name)), do: unquote(index + 36)
   end
 end
