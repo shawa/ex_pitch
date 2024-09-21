@@ -3,7 +3,7 @@ defmodule ExPitch do
     quote do
       import ExPitch.Note
       import ExPitch.Chord
-      import ExPitch.Producer
+      import ExPitch.Producer, only: [play: 1]
     end
   end
 

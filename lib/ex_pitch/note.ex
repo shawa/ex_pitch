@@ -80,4 +80,17 @@ defmodule ExPitch.Note do
   end
 
   def note(n) when is_integer(n), do: n
+
+  drums_808 =
+    ~w[ kick rim snare clap
+        conga_low conga_mid hat_closed conga_hi
+        tom_low tom_mid hat_open tom_hi
+        maracas cymbal cow claves
+      ]a
+
+  for {name, index} <- Enum.with_index(drums_808) do
+    # MIDI Drums usually start on C1
+    @spec drum(atom()) :: 36..51
+    def drum(unquote(name)), do: unquote(index + 36)
+  end
 end

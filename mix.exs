@@ -22,7 +22,8 @@ defmodule ExPitch.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:midiex, "~> 0.6.3"}
+      {:midiex, "~> 0.6.3"},
+      {:phoenix_pubsub, "2.1.3"}
     ]
   end
 end
