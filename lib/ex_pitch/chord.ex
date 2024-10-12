@@ -27,6 +27,6 @@ defmodule ExPitch.Chord do
 
   @spec intervals(atom()) :: [non_neg_integer()]
   for {name, intervals} <- chord_intervals do
-    def intervals(unquote(name)), do: unquote(intervals)
+    defp intervals(unquote(name)), do: unquote(intervals)
   end
 end

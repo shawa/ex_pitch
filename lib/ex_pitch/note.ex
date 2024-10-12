@@ -79,5 +79,7 @@ defmodule ExPitch.Note do
     end
   end
 
+  def note(:kick), do: 60
+
   def note(n) when is_integer(n), do: n
 end
